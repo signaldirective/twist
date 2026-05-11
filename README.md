@@ -5,7 +5,7 @@
 
 This system will create a minimalist Firefox setup and a start page that you can configure with all of your favorite links and search engine. 
 
-Dependencies: `a web browser` (for the start page), `firefox` specifically if you intend to utilize the `userChrome.css` generator script, and [OldJobobo's Custom Omarchy Theme Templates](https://github.com/OldJobobo/oldjobobo-custom-omarchy-templates) that generates the required colors.css when you switch to a theme.
+Dependencies: `a web browser` (for the start page), `firefox` specifically if you intend to utilize the `userChrome.css` generator script, and [OldJobobo's Custom Omarchy Templates](https://github.com/OldJobobo/oldjobobo-custom-omarchy-templates) that generates the required colors.css when you switch to a theme.
 
 ### Enabling userChrome.css in Firefox:
 
