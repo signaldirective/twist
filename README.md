@@ -38,7 +38,7 @@ Dependencies: `a web browser` (for the start page), `firefox` specifically if yo
 1. First, edit `config.js` for the search engine you would like to use. Currently supports Google, DuckDuckGo, Bing, and Brave but other search engines can be added easily enough by adding a new variable to `const SEARCH_ENGINES` and setting your new search engine in `const CONFIG` line `search_engine:`
 2. Edit the `links:` section with your most frequently used links.
 3. Make a directory somewhere that you want your start page to live. I suggest `~/.local/share/startpage` or `~/.config/startpage` but you can make the directory anywhere you have r/w permissions.
-4. Copy `startpage.html`, `startpage-style.tpl`, and `update-theme.sh` to the directory you created in Step 3. 
+4. Copy `startpage.html`, `startpage-style.tpl`, `config.js` and `update-theme.sh` to the directory you created in Step 3. 
 5.  Type `chmod +x update-theme.sh` to make sure it's executable.
 6.  Type `./update-theme.sh` and it should read the current `colors.css` of your theme and generate a `style.css` file for your `startpage.html` that matches the Omarchy theme you have currently applied. 
 7.  Open your browser of choice (Firefox if you're using the userChrome.css) and in the settings, set your start page to be the `startpage.html` file. For example, if you placed it in `~/.config/startpage` then you'd set your start page in your browser settings as `~/.comfig/startpage/startpage.html` that way every time you open your browser, it will load that page and give you access to all of your links and the search engine of your choosing in one convenient location.
