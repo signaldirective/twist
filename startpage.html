@@ -1,0 +1,160 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>s t a r t // p a g e</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300" rel="stylesheet" type="text/css">
+
+    <style>
+      @font-face {
+    font-family: 'SpaceGrotesk';
+    font-style: normal;
+    font-weight: normal;
+    src: url('./fonts/SpaceGrotesk-Regular.woff2') format('woff2');
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'SpaceGrotesk';
+    font-style: normal;
+    font-weight: bold;
+    src: url('./fonts/SpaceGrotesk-Bold.woff2') format('woff2');
+    font-display: swap;
+  }
+      body {
+        margin: 0;
+        padding: 0;
+        background: var(--background);
+        color: var(--foreground);
+        font-family: 'ShureTechMonoNFM';
+        font-weight: 300;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+
+      ul,
+      li {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .wrapper {
+        padding: 1rem;
+      }
+
+      .time {
+        font-size: 5rem;
+        letter-spacing: 6px;
+      }
+
+      .search {
+        margin-top: 2rem;
+      }
+
+      .search__text {
+        -webkit-appearance: none;
+        width: 100%;
+        max-width: 300px;
+        padding: 0.75rem;
+        background: var(--background);
+        border: 0;
+        border-radius: 2px;
+        color: var(--foreground);
+        font-size: 1.1rem;
+      }
+
+      .search__text:focus{
+        outline: 0;
+      }
+
+      .links {
+        margin-top: 2rem;
+      }
+
+      .links li,
+      .links a {
+        display: inline-block;
+      }
+
+      .links a {
+        padding: 0.5rem;
+        color: var(--accent);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <time class="time" id="js-time"></time>
+
+      <form class="search" id="search-form" target="_blank" method="get" autocomplete="off">
+        <input class="search__text" type="text" name="q" autofocus>
+      </form>
+
+ <ul class="links" id="links-list">
+      </ul>
+    </div>
+    
+    <script src="config.js"></script>
+    <script type="text/javascript">
+      function setTime() {
+        var zeros = function(num) {
+          return ('0' + num.toString()).slice(-2);
+        }
+
+        var date = new Date();
+        var hours = date.getHours();
+        var minutes = zeros(date.getMinutes());
+        var ampm = hours >= 12 ? 'PM' : 'AM';
+        hours = hours % 12;
+        hours = hours ? hours : 12;
+        var colon = date.getSeconds() % 2 === 0 ? ':' : ' ';
+        var time = hours + colon + minutes + ' ' + ampm;
+
+        document.getElementById('js-time').innerHTML = time;
+      }
+
+      function initializePage() {
+        // Set search engine action
+        const searchForm = document.getElementById('search-form');
+        searchForm.action = SEARCH_ENGINES[CONFIG.search_engine];
+
+        // Load links dynamically
+        const linksList = document.getElementById('links-list');
+        CONFIG.links.forEach(link => {
+          const li = document.createElement('li');
+          const a = document.createElement('a');
+          a.href = link.url;
+          a.target = '_blank';
+          a.textContent = link.text;
+          li.appendChild(a);
+          linksList.appendChild(li);
+        });
+      }
+
+      setTime();
+      setInterval(setTime, 1000);
+
+      // Initialize page when DOM is loaded
+      document.addEventListener('DOMContentLoaded', initializePage);
+
+      // Clear search box after submission
+      document.querySelector('.search').addEventListener('submit', function(e) {
+        var searchInput = document.querySelector('.search__text');
+        var searchValue = searchInput.value;
+        
+        // Let the form submit normally (opens in new tab)
+        setTimeout(function() {
+          searchInput.value = '';
+        }, 100);
+      });
+    </script>
+  </body>
+</html>
