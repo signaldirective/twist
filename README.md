@@ -42,3 +42,7 @@ Dependencies: `a web browser` (for the start page), `firefox` specifically if yo
 5.  Type `chmod +x update-theme.sh` to make sure it's executable.
 6.  Type `./update-theme.sh` and it should read the current `colors.css` of your theme and generate a `style.css` file for your `startpage.html` that matches the Omarchy theme you have currently applied. 
 7.  Open your browser of choice (Firefox if you're using the userChrome.css) and in the settings, set your start page to be the `startpage.html` file. For example, if you placed it in `~/.config/startpage` then you'd set your start page in your browser settings as `~/.comfig/startpage/startpage.html` that way every time you open your browser, it will load that page and give you access to all of your links and the search engine of your choosing in one convenient location.
+
+## [Tip me on Ko-Fi!](https://ko-fi.com/signaldirective)   
+
+**Copyright 2026 Signal Directive**
