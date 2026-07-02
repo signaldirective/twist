@@ -5,6 +5,14 @@ const CONFIG = {
     // Search engine configuration
     // Available options: "google", "duckduckgo", "bing", "brave"
     search_engine: "google",
+
+    // Timezone for clock display (IANA timezone string)
+    // Used to correctly display local time in browsers that spoof timezone (e.g. LibreWolf)
+    // Common values:
+    //   America/New_York, America/Chicago, America/Denver, America/Los_Angeles
+    //   Europe/London, Europe/Paris, Europe/Berlin, Asia/Tokyo
+    // Find yours at https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+    timezone: "America/New_York",
     
     // Links configuration
     // Format: { text: "Display Text", url: "https://example.com" }

@@ -104,19 +104,34 @@
     
     <script src="config.js"></script>
     <script type="text/javascript">
-      function setTime() {
-        var zeros = function(num) {
-          return ('0' + num.toString()).slice(-2);
-        }
+      var tzFormatter = CONFIG.timezone ? new Intl.DateTimeFormat('en-US', {
+        timeZone: CONFIG.timezone,
+        hour: 'numeric', minute: '2-digit', second: '2-digit', hour12: true
+      }) : null;
 
-        var date = new Date();
-        var hours = date.getHours();
-        var minutes = zeros(date.getMinutes());
-        var ampm = hours >= 12 ? 'PM' : 'AM';
-        hours = hours % 12;
-        hours = hours ? hours : 12;
-        var colon = date.getSeconds() % 2 === 0 ? ':' : ' ';
-        var time = hours + colon + minutes + ' ' + ampm;
+      function setTime() {
+        if (tzFormatter) {
+          var parts = tzFormatter.formatToParts(new Date());
+          var hour, minute, second, ampm;
+          for (var i = 0; i < parts.length; i++) {
+            var p = parts[i];
+            if (p.type === 'hour') hour = parseInt(p.value);
+            else if (p.type === 'minute') minute = p.value;
+            else if (p.type === 'second') second = parseInt(p.value);
+            else if (p.type === 'dayPeriod') ampm = p.value;
+          }
+          var colon = second % 2 === 0 ? ':' : ' ';
+          var time = hour + colon + minute + ' ' + ampm;
+        } else {
+          var now = new Date();
+          var zeros = function(n) { return ('0' + n.toString()).slice(-2); };
+          var h = now.getHours();
+          var m = zeros(now.getMinutes());
+          var ap = h >= 12 ? 'PM' : 'AM';
+          h = h % 12 || 12;
+          var c = now.getSeconds() % 2 === 0 ? ':' : ' ';
+          var time = h + c + m + ' ' + ap;
+        }
 
         document.getElementById('js-time').innerHTML = time;
       }
